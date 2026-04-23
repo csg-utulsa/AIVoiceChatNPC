@@ -18,7 +18,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using LLMUnity;
-using StarterAssets; //reference to LLM Unity namespace
+using StarterAssets;
+using UnityEngine.Events; //reference to LLM Unity namespace
 
 
 namespace ProfessorAkram.AITutorial
@@ -29,9 +30,9 @@ namespace ProfessorAkram.AITutorial
         [SerializeField]
         [Tooltip("Reference to player input component")]
         private PlayerInput _playerInput;
-        private ThirdPersonController _playerController;
-        [SerializeField]
-        [Tooltip("String name of the player action map")]
+        // private FirstersonController _playerController;
+        // [SerializeField]
+        // [Tooltip("String name of the player action map")]
         private string _playerActionMapName;
         [SerializeField]
         [Tooltip("String name of the ui action map")]
@@ -54,6 +55,11 @@ namespace ProfessorAkram.AITutorial
         [SerializeField]
         [Tooltip("Text for the AI response")]
         private Text _aiResponseText;
+
+        [SerializeField]
+        private RunJets TTSOutput;
+
+        
         
         
         void Start()
@@ -193,6 +199,7 @@ namespace ProfessorAkram.AITutorial
         {
             Debug.Log(text);
             _aiResponseText.text = text;
+
             
         }//end PostAIResponse()
         
@@ -203,6 +210,10 @@ namespace ProfessorAkram.AITutorial
             _playerInputText.interactable = true;
             _playerInputText.Select();
             _playerInputText.text = "";
+            TTSOutput.inputText = _aiResponseText.text;
+            Debug.Log("REPLY COMPLETE"); //do not touch, load bearing debug
+            TTSOutput.isTextNew = true;
+
             
         }//end OnReplyCompleted()
         

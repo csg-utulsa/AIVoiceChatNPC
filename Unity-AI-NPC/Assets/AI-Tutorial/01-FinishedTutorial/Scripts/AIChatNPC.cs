@@ -23,7 +23,7 @@ using LLMUnity;
 namespace ProfessorAkram.AITutorial
 {
     [RequireComponent(typeof(BoxCollider))]
-    public class AIChatNPC : MonoBehaviour, IInteractable
+    public class AIChatNPC : MonoBehaviour//, IInteractable
     {
         public event Action<LLMCharacter> OnStartConversation; // Event to notify when AI Conversation gets triggered
         public event Action OnEndConversation; //Event to notify when AI conversation ends
@@ -68,7 +68,7 @@ namespace ProfessorAkram.AITutorial
         {
 
             // disable gameObject so that theAwake is not called immediately
-            _llmCharacterGameObject.SetActive(false);
+            //_llmCharacterGameObject.SetActive(false);
 
             //Get LLM Character component
             if (!_llmCharacterGameObject.gameObject.TryGetComponent<LLMCharacter>(out LLMCharacter llmCharacter))
